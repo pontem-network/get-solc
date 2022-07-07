@@ -1,0 +1,48 @@
+name: Test action
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: true
+      matrix:
+        os:
+          - macos-12
+          - ubuntu-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.solc
+          key: ${{ runner.os }}-solc
+
+      - name: download latest version
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: test
+        run: solc -V
+      - name: download v0.8.15
+        uses: ./
+        with:
+          version: v0.8.15
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: test
+        run: solc --version
+      - name: download prerelease
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: "true"
+      - name: test
+        run: solc --version
