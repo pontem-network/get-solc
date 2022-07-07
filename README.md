@@ -1,4 +1,4 @@
-# Get `aptos` action
+# Get `solc` action
 
 This GitHub Action delivers specified [`solc`] release for a solc network.
 
