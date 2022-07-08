@@ -160,7 +160,7 @@ echo "create link $FILE_PATH"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
   mkdir -p $HOME/.local/bin
   ln -sf "$FILE_PATH" $HOME/.local/bin/solc
-  echo "$HOME/.local/bin" >>$GITHUB_PATH
+  echo "$HOME/.local/bin" >> $GITHUB_PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf "$FILE_PATH" /usr/local/bin/solc
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then

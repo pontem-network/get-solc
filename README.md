@@ -18,14 +18,14 @@ Download the latest version of solc
 
 ```yaml
 - name: get solce
-  uses: pontem-network/get-solc@main
+  uses: pontem-network/get-solc@master
 ```
 
 Download a specific version of solc
 
 ```yaml
 - name: get solc
-  uses: pontem-network/get-solc@main
+  uses: pontem-network/get-solc@master
   with:
     version: v0.8.15
 ```
@@ -34,7 +34,7 @@ Allow downloading pre-releases
 
 ```yaml
 - name: get solc
-  uses: pontem-network/get-solc@main
+  uses: pontem-network/get-solc@master
   with:
     prerelease: "true"
 ```
@@ -43,7 +43,7 @@ Download a specific version of solc and token
 
 ```yaml
 - name: get solc
-  uses: pontem-network/get-solc@main
+  uses: pontem-network/get-solc@master
   with:
     version: v0.8.15
     token: ${{ secrets.GITHUB_TOKEN }}
