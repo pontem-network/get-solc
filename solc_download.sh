@@ -158,6 +158,7 @@ chmod 1755 $FILE_PATH
 echo "create link $FILE_PATH"
 
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
+  echo "OS: ${OSTYPE}"
   mkdir -p $HOME/.local/bin
   ln -sf "$FILE_PATH" $HOME/.local/bin/solc
   echo "$HOME/.local/bin" >> $GITHUB_PATH
