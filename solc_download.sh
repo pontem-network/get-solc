@@ -126,14 +126,13 @@ if [ -z $DOWNLOAD_URL ]; then
   exit 3
 fi
 
-VERSION_DIR="$SOLC_FOLDER/$VERSION";
+VERSION_DIR="$SOLC_FOLDER/$VERSION"
 if [ ! -e $VERSION_DIR ]; then
   if ! mkdir -p $VERSION_DIR; then
-    echo "Failed to create a directory ${VERSION_DIR}";
-    exit 7;
-    fi
+    echo "Failed to create a directory ${VERSION_DIR}"
+    exit 7
+  fi
 fi
-
 
 FILE_PATH="$VERSION_DIR/$NAME"
 if [ ! -e $FILE_PATH ]; then
@@ -156,18 +155,18 @@ fi
 echo "chmod 1755 $FILE_PATH"
 chmod 1755 $FILE_PATH
 echo "create link $FILE_PATH"
+echo "OS: ${OSTYPE}"
 
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
-  echo "OS: ${OSTYPE}"
   mkdir -p $HOME/.local/bin
   ln -sf "$FILE_PATH" $HOME/.local/bin/solc
-  echo "$HOME/.local/bin" >> $GITHUB_PATH
+  echo "$HOME/.local/bin" >>$GITHUB_PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf "$FILE_PATH" /usr/local/bin/solc
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-     mkdir -p "$HOME/.local/bin"
-     ln -sf "$FILE_PATH" "$HOME/.local/bin/solc"
-     echo "$HOME/.local/bin" >> $GITHUB_PATH
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$FILE_PATH" "$HOME/.local/bin/solc"
+  echo "$HOME/.local/bin" >>$GITHUB_PATH
 else
   echo "Unknown OS"
   exit 4
